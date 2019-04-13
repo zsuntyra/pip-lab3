@@ -1,0 +1,122 @@
+body.start {
+    background-image: url(#{resource[ 'images/background.jpg' ]});
+    margin: 0;
+}
+
+body.main {
+    background-image: url(#{resource[ 'images/mainbackground.jpg' ]});
+    margin: 0;
+}
+
+.header_1, .header_2, .container, #clockAndCalendar {
+    width: 800px;
+    border-radius: 15px;
+    background-color: rgba(238, 253, 247, 0.9);
+    font-family: monospace;
+    color: #000000;
+    border: 1px solid blue;
+    filter: alpha(Opacity=70);
+}
+
+.header_1 {
+    height: 55px;
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.header_2 {
+    height: 95px;
+    font-size: 25pt;
+}
+
+.header_3 {
+    width: 800px;
+    background-color: rgba(238, 253, 247, 0.9);
+    border-radius: 15px;
+    height: 130px;
+    font-size: 15pt;
+    font-family: monospace;
+    color: #000000;
+    border: 1px solid blue;
+    filter: alpha(Opacity=70);
+}
+
+.table_header_2 td {
+    text-align: center;
+    font-size: 18pt;
+}
+
+#clockAndCalendar {
+    font-size: 25px;
+    height: 350px;
+}
+
+#clock {
+    height: 65px;
+    font-size: 30pt;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #0001a7;
+}
+
+.table_header_2 td {
+    text-align: center;
+    font-size: 18pt;
+}
+
+table.input_table {
+    border-collapse: separate;
+    padding: 10px;
+    margin-right: 20px;
+    font-size: 25px;
+    border-spacing: 50px;
+    width: 780px;
+    height: 300px;
+    text-align: left;
+
+}
+
+#beanTable {
+    border-collapse: collapse;
+    text-align: center;
+    width: 85%;
+    border: 1px solid black;
+    font-size: 20px;
+}
+
+#tableCalendar {
+    font-size: 20px;
+    border-collapse: collapse;
+    text-align: center;
+    border: 1px solid black;
+}
+
+#startTable td {
+    padding: 40px;
+}
+
+
+#tableCalendar td {
+    background: #fbefeb;
+    padding: 10px;
+}
+
+#tableCalendar caption {
+    font-weight: bold;
+}
+
+#tableCalendar th {
+    font-weight: bold;
+    background: #fb817b;
+}
+
+#beanTable td, #beanTable th, #tableCalendar td, #tableCalendar th {
+    border: 1px solid black;
+}
+
+.buttonToMain {
+    width: 165px;
+    background: #1b30a7 !important;
+    color: white;
+    height: 30px;
+    border-radius: 10px;
+}

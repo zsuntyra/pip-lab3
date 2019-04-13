@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+>
+
+
+<h:head>
+    <title>Lab_3</title>
+    <h:outputStylesheet library="styles" name="main.css"/>
+    <link rel="stylesheet" href="resources/styles/main.css" type="text/css"/>
+    <h:outputScript library="scripts" name="draw.js"/>
+</h:head>
+
+<h:body styleClass="main">
+    <f:view>
+        <center>
+            <div class="header_1">
+                <table class="table_header_1">
+                    <tr>
+                        <td><label> Лаборатоная работа №3.</label></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="header_2">
+                <table class="table_header_2">
+                    <tr>
+                        <td/>
+                        <td>Группа: P3202</td>
+                    </tr>
+                    <tr>
+                        <td/>
+                        <td>Вариант: 851108</td>
+                    </tr>
+                    <tr>
+                        <td/>
+                        <td>Выполнил: Куркин Павел Петрович</td>
+                    </tr>
+                </table>
+            </div>
+            <br/>
+            <div class="container form" id="inputs">
+
+                <table class="input_table">
+                    <tr>
+                        <td>
+                            <h:form class="form" id="form">
+                                <table>
+                                    <tr>
+                                        <td><label id="choose"> Выбор значений:</label></td>
+                                    </tr>
+                                    <tr>
+                                        <td id="rowX">
+                                            <h:outputLabel class="label" value="&#8226; Координата X: "/>
+                                            <h:outputText class="x_input" id="X_buttion" value="#{pointBean.x}"/>
+                                            <br/>
+                                            <h:commandButton class="input_X" value="-5" type="submit">
+                                                <f:setPropertyActionListener target="#{pointBean.x}" value="-5"/>
+                                            </h:commandButton>
+                                            <h:commandButton class="input_X" value="-4" type="submit">
+                                                <f:setPropertyActionListener target="#{pointBean.x}" value="-4"/>
+                                            </h:commandButton>
+                                            <h:commandButton class="input_X" value="-3" type="submit">
+                                                <f:setPropertyActionListener target="#{pointBean.x}" value="-3"/>
+                                            </h:commandButton>
+                                            <h:commandButton class="input_X" value="-2" type="submit">
+                                                <f:setPropertyActionListener target="#{pointBean.x}" value="-2"/>
+                                            </h:commandButton>
+                                            <h:commandButton class="input_X" value="-1" type="submit">
+                                                <f:setPropertyActionListener target="#{pointBean.x}" value="-1"/>
+                                            </h:commandButton>
+                                            <h:commandButton class="input_X" value="0" type="submit">
+                                                <f:setPropertyActionListener target="#{pointBean.x}" value="0"/>
+                                            </h:commandButton>
+                                            <h:commandButton class="input_X" value="1" type="submit">
+                                                <f:setPropertyActionListener target="#{pointBean.x}" value="1"/>
+                                            </h:commandButton>
+                                            <h:commandButton class="input_X" value="2" type="submit">
+                                                <f:setPropertyActionListener target="#{pointBean.x}" value="2"/>
+                                            </h:commandButton>
+                                            <h:commandButton class="input_X" value="3" type="submit">
+                                                <f:setPropertyActionListener target="#{pointBean.x}" value="3"/>
+                                            </h:commandButton>
+                                        </td>
+                                        <td style="width: 100px !important;"/>
+                                        <td>
+                                            <p:outputPanel id="graphPanel">
+                                                <svg id="picture" width="250" height="250" onclick="getPoint(event)"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <defs>
+                                                        <pattern id="image" patternUnits="userSpaceOnUse" width="250"
+                                                                 height="250">
+                                                            <image x="0" y="0" width="250" height="250"
+                                                                   xlink:href="resources/images/picture.svg"/>
+                                                        </pattern>
+                                                    </defs>
+                                                    <polygon points="0,0 250,0 250,250 0,250" fill="url(#image)"/>
+                                                    <ui:repeat value="#{pointBean.points}" var="point" id="points">
+                                                        <circle cx="#{100 / point.r * point.x + 125}"
+                                                                cy="#{250 - (100 / point.r * point.y + 125)}"
+                                                                stroke="black"
+                                                                fill="#{point.result eq true ? 'green' : 'red'}"
+                                                                class="point" r="3"/>
+                                                    </ui:repeat>
+                                                </svg>
+
+                                                <p:inputText type="hidden" id="hiddenX" value="#{pointBean.x}"/>
+                                                <p:inputText type="hidden" id="hiddenY" value="#{pointBean.hiddenY}"/>
+                                                <h:commandButton style="display:none" update="graphPanel Y"
+                                                                 id="areaClickBtn"
+                                                                 action="#{pointBean.addPoint()}"/>
+                                            </p:outputPanel>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td id="rowY">
+                                            <h:outputLabel class="label" value="&#8226; Координата Y: "/><br/>
+                                            <h:inputText styleClass="label" id="Y" maxlength="5" value="#{pointBean.y}">
+                                                <f:validator validatorId="yValidator"/>
+                                            </h:inputText>
+                                            <h:message for="Y" style="color:red; margin: 7px;"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h:outputLabel class="label" value="&#8226; Радиус R: "/>
+                                            <h:outputText style="display: none" class="input_R" id="R_text"
+                                                          value="#{pointBean.r}"/>
+                                            <br/>
+                                            <h:commandLink value="#{pointBean.r}">
+                                                <f:selectItem itemValue="1" itemLabel="1"/>
+                                                <f:selectItem itemValue="2" itemLabel="2"/>
+                                                <f:selectItem itemValue="3" itemLabel="3"/>
+                                                <f:selectItem itemValue="4" itemLabel="4"/>
+                                                <f:selectItem itemValue="5" itemLabel="5"/>
+                                                <f:ajax render="graphPanel R_text"/>
+                                            </h:commandLink>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h:commandLink styleClass="buttonToMain" id="submit" value="Проверить"
+                                                             action="#{pointBean.addPoint()}"/>
+                                        </td>
+                                        <td style="width: 25px">
+                                            <h:button styleClass="buttonToMain" value="Назад" outcome="index"/>
+                                        </td>
+                                        <td style="width: 25px">
+                                            <h:commandButton styleClass="buttonToMain" value="Очистить"
+                                                             action="#{pointBean.clearPoints()}"/>
+                                        </td>
+
+                                    </tr>
+                                </table>
+
+                            </h:form>
+
+
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+
+            <div id="history" class="container">
+                <p:dataTable id="resultsTable" class="input_table" value="#{pointBean.points}"
+                             var="elem">
+
+                    <p:column headerText="X">
+                        <h:outputText value="#{elem.x}"/>
+                    </p:column>
+
+                    <p:column headerText="Y">
+                        <h:outputText value="#{elem.y}"/>
+                    </p:column>
+
+                    <p:column headerText="R">
+                        <h:outputText value="#{elem.r}"/>
+                    </p:column>
+
+                    <p:column headerText="IsInArea">
+                        <h:outputText value="#{elem.result}"/>
+                    </p:column>
+
+                </p:dataTable>
+            </div>
+
+
+            <br/>
+        </center>
+    </f:view>
+
+</h:body>
+
+</html>

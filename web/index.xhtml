@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Lab_3</title>
+    <h:outputStylesheet library="styles" name="main.css"/>
+    <h:outputScript library="scripts" name="clock.js"/>
+    <h:link href="main.css" rel="stylesheet"/>
+</h:head>
+
+<h:body styleClass="start" onload="createCalendar()">
+    <f:view>
+        <center>
+            <div class="header_1">
+                <table class="table_header_1">
+                    <tr>
+                        <td><label> Лаборатоная работа №3.</label></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="header_2">
+                <table class="table_header_2">
+                    <tr>
+                        <td></td>
+                        <td>Группа: P3202</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Вариант: 84183</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Выполнил: Зайцев Артем Алексеевич</td>
+                    </tr>
+                </table>
+            </div>
+
+
+            <br/>
+            <h:form styleClass="header_3">
+                <h:outputText value="Username: "/>
+                <h:inputText id="username" value="#{authBean.username}" maxlength="64" minlenght="3" required="true"/>
+                <h:message for="username"/>
+                <br/><br/>
+
+                <h:outputText value="Password: "/>
+                <h:inputSecret id="password" value="#{authBean.password}"
+                               maxlength="64" minlenght="3" required="true"/>
+                <h:message for="password"/>
+                <br/><br/>
+                <h:commandButton styleClass="buttonToMain" action="#{authBean.signIn}"
+                                 value="Login"/>
+                <h:commandButton styleClass="buttonToMain" action="#{authBean.signUp}"
+                                 value="Sign up"/>
+                <h:outputLabel value="#{messageBean.errorMessage}" rendered="#{not empty messageBean.errorMessage}"/>
+            </h:form>
+            <br/>
+
+            <div id="clockAndCalendar">
+                <table id="startTable">
+                    <tr>
+                        <td>
+                            <div id="clock"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </center>
+    </f:view>
+</h:body>
+
+</html>
