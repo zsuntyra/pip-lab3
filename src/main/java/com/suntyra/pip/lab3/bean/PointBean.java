@@ -4,9 +4,7 @@ import com.suntyra.pip.lab3.ErrorMessage;
 import com.suntyra.pip.lab3.model.Point;
 import com.suntyra.pip.lab3.model.User;
 import com.suntyra.pip.lab3.repository.UserRepository;
-import org.hibernate.HibernateException;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -32,17 +30,7 @@ public class PointBean implements Serializable {
     @ManagedProperty("#{messageBean}")
     private MessageBean messageBean = null;
 
-    private UserRepository userRepository;
-
-    @PostConstruct
-    public void postConstruct() {
-        try {
-            userRepository = new UserRepository();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            messageBean.setErrorMessage(ErrorMessage.SERVER_UNAVAILABLE);
-        }
-    }
+    private UserRepository userRepository = new UserRepository();
 
     public double getX() {
         return x;
@@ -93,7 +81,11 @@ public class PointBean implements Serializable {
 
         User user = getUserFromContext();
         user.getPoints().clear();
-        userRepository.saveOrUpdate(user);
+        try {
+            userRepository.saveOrUpdate(user);
+        } catch (RuntimeException e) {
+            messageBean.setErrorMessage(ErrorMessage.SERVER_UNAVAILABLE);
+        }
     }
 
     public boolean isInArea() {
@@ -121,7 +113,11 @@ public class PointBean implements Serializable {
         System.out.println("IsInArea = " + isInArea());
         System.out.println("Username = " + owner.getUsername());
 
-        userRepository.saveOrUpdate(owner);
+        try {
+            userRepository.saveOrUpdate(owner);
+        } catch (RuntimeException e) {
+            messageBean.setErrorMessage(ErrorMessage.SERVER_UNAVAILABLE);
+        }
     }
 
     private double sqr(double value) {
