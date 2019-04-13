@@ -3,9 +3,7 @@ package com.suntyra.pip.lab3.bean;
 import com.suntyra.pip.lab3.ErrorMessage;
 import com.suntyra.pip.lab3.model.User;
 import com.suntyra.pip.lab3.repository.UserRepository;
-import org.hibernate.HibernateException;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -18,7 +16,7 @@ import java.io.Serializable;
 public class AuthBean implements Serializable {
     private String username;
     private String password;
-    private UserRepository userRepository;
+    private UserRepository userRepository = new UserRepository();
 
     @ManagedProperty("#{userBean}")
     private UserBean userBean;
@@ -51,16 +49,6 @@ public class AuthBean implements Serializable {
 
     public void setUserBean(UserBean userBean) {
         this.userBean = userBean;
-    }
-
-    @PostConstruct
-    public void postConstruct() {
-        try {
-            userRepository = new UserRepository();
-        } catch (HibernateException e) {
-            e.printStackTrace();
-            messageBean.setErrorMessage(ErrorMessage.SERVER_UNAVAILABLE);
-        }
     }
 
     private void authorizeUser(User user) {
@@ -106,7 +94,7 @@ public class AuthBean implements Serializable {
             }
             User newUser = new User(username, password);
             userRepository.save(newUser);
-        } catch (NullPointerException e) {
+        } catch (RuntimeException e) {
             messageBean.setErrorMessage(ErrorMessage.SERVER_UNAVAILABLE);
         }
         return false;
