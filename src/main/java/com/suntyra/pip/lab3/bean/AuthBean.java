@@ -6,11 +6,15 @@ import com.suntyra.pip.lab3.repository.UserRepository;
 import org.hibernate.HibernateException;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 
+@ManagedBean(name = "authBean", eager = true)
+@SessionScoped
 public class AuthBean implements Serializable {
     private String username;
     private String password;

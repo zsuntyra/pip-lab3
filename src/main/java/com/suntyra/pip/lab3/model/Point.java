@@ -23,7 +23,7 @@ public class Point implements Serializable {
     private Boolean isInArea;
 
     @ManyToOne
-    @JoinColumn(name = "id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     public Point(Double x, Double y, Double r, Boolean isInArea, User user) {
