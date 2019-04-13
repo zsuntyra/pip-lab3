@@ -1,6 +1,5 @@
 package com.suntyra.pip.lab3.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +12,6 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class Point implements Serializable {
     @Id
     @GeneratedValue
@@ -25,6 +23,14 @@ public class Point implements Serializable {
     private Boolean isInArea;
 
     @ManyToOne
-    @JoinColumn(name = "id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    public Point(Double x, Double y, Double r, Boolean isInArea, User user) {
+        this.x = x;
+        this.y = y;
+        this.r = r;
+        this.isInArea = isInArea;
+        this.user = user;
+    }
 }
