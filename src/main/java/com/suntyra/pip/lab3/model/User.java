@@ -1,12 +1,12 @@
 package com.suntyra.pip.lab3.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,7 +14,6 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class User implements Serializable {
     @Id
     @GeneratedValue
@@ -25,4 +24,10 @@ public class User implements Serializable {
 
     @OneToMany(mappedBy = "user", targetEntity = Point.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Point> points;
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+        points = new ArrayList<>();
+    }
 }
