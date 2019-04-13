@@ -1,20 +1,20 @@
 body.start {
     background-image: url(#{resource[ 'images/background.jpg' ]});
-    margin: 0;
+    margin: 0 auto;
 }
 
 body.main {
     background-image: url(#{resource[ 'images/mainbackground.jpg' ]});
-    margin: 0;
+    margin: 0 auto;
 }
 
-.header_1, .header_2, .container, #clockAndCalendar {
+.header_1, .header_2, .container {
     width: 800px;
-    border-radius: 15px;
+    border-radius: 5px;
     background-color: rgba(238, 253, 247, 0.9);
     font-family: monospace;
-    color: #000000;
-    border: 1px solid blue;
+    color: darkgoldenrod;
+    border: 1px solid chocolate;
     filter: alpha(Opacity=70);
 }
 

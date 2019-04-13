@@ -1,6 +1,8 @@
 .idea/
 out/
 target/
+classes/
+lib/
 lab3.iml
 Dockerfile
 

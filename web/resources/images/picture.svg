@@ -1,0 +1,49 @@
+<svg width="250" height="250" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="250" height="250" fill="white"/>
+    <!-- part circle -->
+    <circle r="100" cx="125" cy="125" fill="blue"/>
+    <rect x="125" y="0" width="125" height="125" fill="white"/>
+    <rect x="0" y="125" width="250" height="125" fill="white"/>
+
+    <!-- rectanle-->
+    <rect x="125" y="75" width="100" height="50" fill="blue"/>
+
+    <!-- triangle -->
+    <polygon points="125,125 225,125 125,225" fill="blue"/>
+
+    <!-- OX -->
+    <line x1="0" y1="125" x2="250" y2="125" stroke="black" stroke-width="2"/>
+    <line x1="245" y1="122.5" x2="250" y2="125" stroke="black" stroke-width="2"/>
+    <line x1="245" y1="127.5" x2="250" y2="125" stroke="black" stroke-width="2"/>
+
+    <!-- OY -->
+    <line x1="125" y1="250" x2="125" y2="0" stroke="black" stroke-width="2"/>
+    <line x1="127.5" y1="5" x2="125" y2="0" stroke="black" stroke-width="2"/>
+    <line x1="127.5" y1="5" x2="125" y2="0" stroke="black" stroke-width="2"/>
+
+    <!-- OX dots -->
+    <line x1="25" y1="127.5" x2="25" y2="127.5" stroke="black" stroke-width="2"/>
+    <line x1="75" y1="127.5" x2="75" y2="127.5" stroke="black" stroke-width="2"/>
+    <line x1="175" y1="127.5" x2="175" y2="127.5" stroke="black" stroke-width="2"/>
+    <line x1="225" y1="127.5" x2="225" y2="127.5" stroke="black" stroke-width="2"/>
+
+
+    <!-- OY dots -->
+    <line x1="122.5" y1="25" x2="127.5" y2="25" stroke="black" stroke-width="2"/>
+    <line x1="122.5" y1="75" x2="127.5" y2="75" stroke="black" stroke-width="2"/>
+    <line x1="122.5" y1="175" x2="127.5" y2="175" stroke="black" stroke-width="2"/>
+    <line x1="122.5" y1="225" x2="127.5" y2="225" stroke="black" stroke-width="2"/>
+
+    <!-- OX text -->
+    <text x="22.5" y="120">-R</text>
+    <text x="67.5" y="120">-R/2</text>
+    <text x="117.5" y="120">0</text>
+    <text x="175" y="120">R/2</text>
+    <text x="222.5" y="120">R</text>
+
+    <!-- OY text -->
+    <text x="110" y="25">R</text>
+    <text x="105" y="75">R/2</text>
+    <text x="105" y="175">-R/2</text>
+    <text x="110" y="225">-R</text>
+</svg>
