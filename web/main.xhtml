@@ -40,38 +40,6 @@
                                         <td><label id="choose"> Выбор значений:</label></td>
                                     </tr>
                                     <tr>
-                                        <!--<td id="rowX">
-                                            <h:outputLabel class="label" value="&#8226; Координата X: "/>
-                                            <h:outputText class="x_input" id="X_buttion" value="#{pointBean.x}"/>
-                                            <br/>
-                                            <h:commandButton class="input_X" value="-5" type="submit">
-                                                <f:setPropertyActionListener target="#{pointBean.x}" value="-5"/>
-                                            </h:commandButton>
-                                            <h:commandButton class="input_X" value="-4" type="submit">
-                                                <f:setPropertyActionListener target="#{pointBean.x}" value="-4"/>
-                                            </h:commandButton>
-                                            <h:commandButton class="input_X" value="-3" type="submit">
-                                                <f:setPropertyActionListener target="#{pointBean.x}" value="-3"/>
-                                            </h:commandButton>
-                                            <h:commandButton class="input_X" value="-2" type="submit">
-                                                <f:setPropertyActionListener target="#{pointBean.x}" value="-2"/>
-                                            </h:commandButton>
-                                            <h:commandButton class="input_X" value="-1" type="submit">
-                                                <f:setPropertyActionListener target="#{pointBean.x}" value="-1"/>
-                                            </h:commandButton>
-                                            <h:commandButton class="input_X" value="0" type="submit">
-                                                <f:setPropertyActionListener target="#{pointBean.x}" value="0"/>
-                                            </h:commandButton>
-                                            <h:commandButton class="input_X" value="1" type="submit">
-                                                <f:setPropertyActionListener target="#{pointBean.x}" value="1"/>
-                                            </h:commandButton>
-                                            <h:commandButton class="input_X" value="2" type="submit">
-                                                <f:setPropertyActionListener target="#{pointBean.x}" value="2"/>
-                                            </h:commandButton>
-                                            <h:commandButton class="input_X" value="3" type="submit">
-                                                <f:setPropertyActionListener target="#{pointBean.x}" value="3"/>
-                                            </h:commandButton>
-                                        </td>-->
                                         <td style="width: 100px !important;"/>
                                         <td>
                                             <p:outputPanel id="graphPanel">
@@ -104,10 +72,10 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <h:outputLabel styleClass="label" for="x" value="&#8226; Координата X: "/>
-                                            <h:outputText styleClass="label" id="X_buttion" value="#{pointBean.x}"/>
-                                                <p:inputText styleClass="label" id="x" value="#{pointBean.x}" onkeydown="return false;"/>
-                                                <p:slider styleClass="slide" for="x" minValue="-4" maxValue="4" step="1"
+                                            <h:outputLabel styleClass="label" for="X" value="&#8226; Координата X: "/>
+                                            <h:outputText styleClass="label" id="Xb" value="#{pointBean.x}"/>
+                                                <p:inputText styleClass="label" id="X" value="#{pointBean.x}" onkeydown="return false;"/>
+                                                <p:slider styleClass="slide" for="X" minValue="-4" maxValue="4" step="1"
                                                           target="#{pointBean.x}" onSlideEnd="document.getElementById('mainForm:hiddenBtn').click()"/>
                                         </td>
                                     </tr>
@@ -122,18 +90,6 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                           <!--<h:outputLabel class="label" value="&#8226; Радиус R: "/>
-                                            <h:outputText style="display: none" class="input_R" id="R_text"
-                                                          value="#{pointBean.r}"/>
-                                            <br/>
-                                            <h:selectOneMenu value="#{pointBean.r}">
-                                                <f:selectItem itemValue="1" itemLabel="1"/>
-                                                <f:selectItem itemValue="2" itemLabel="2"/>
-                                                <f:selectItem itemValue="3" itemLabel="3"/>
-                                                <f:selectItem itemValue="4" itemLabel="4"/>
-                                                <f:selectItem itemValue="5" itemLabel="5"/>
-                                                <f:ajax render="graphPanel R_text"/>
-                                            </h:selectOneMenu>-->
                                            <h:outputLabel class="label" value="&#8226; Радиус R: "/>
                                             <h:outputText class="input_R" id="R_text"
                                                           value="#{pointBean.r}"/>

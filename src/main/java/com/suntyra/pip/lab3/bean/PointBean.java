@@ -114,6 +114,7 @@ public class PointBean implements Serializable {
         User owner = getUserFromContext();
         Point point = new Point(x, y, r, isInArea(), owner);
         owner.getPoints().add(point);
+        graphPoints.add(point);
         // FIXME debug mode on
         System.out.println("X = " + x);
         System.out.println("Y = " + y);
