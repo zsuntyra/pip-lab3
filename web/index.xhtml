@@ -9,25 +9,23 @@
 
 <h:head>
     <title>Lab_3</title>
-    <h:outputStylesheet library="styles" name="main.css"/>
+    <h:outputStylesheet library="styles" name="index.css"/>
     <h:outputScript library="scripts" name="clock.js"/>
     <h:link href="main.css" rel="stylesheet"/>
 </h:head>
 
 <h:body styleClass="start">
     <f:view>
-        <center>
+        <div class="divFlex">
             <div class="header_1">
-                        Лаборатоная работа №3.
-            </div>
-            <div class="header_2">
+                       Лаборатоная работа №3.<br/>
                        Группа: P3202 Вариант: 84183 <br/>
-                       Выполнил: Зайцев Артем Алексеевич
+                       Выполнил: <br/>
+                        Зайцев Артем Алексеевич
             </div>
 
-
-            <br/>
-            <h:form styleClass="header_3">
+            <div>
+            <h:form styleClass="header_2">
                 <h:outputText value="Username: "/>
                 <h:inputText id="username" value="#{authBean.username}" maxlength="64" minlenght="3" required="true"/>
                 <h:message for="username"/>
@@ -44,19 +42,9 @@
                                  value="Sign up"/>
                 <h:outputLabel value="#{messageBean.errorMessage}" rendered="#{not empty messageBean.errorMessage}"/>
             </h:form>
-            <br/>
-
-            <div>
-                <table id="startTable">
-                    <tr>
-                        <td>
-                            <div id="clock"></div>
-                        </td>
-                    </tr>
-                </table>
             </div>
-
-        </center>
+        </div>
+        <div id="clock"></div>
     </f:view>
 </h:body>
 

@@ -1,6 +1,6 @@
 body.start {
     background-image: url("https://www.dropbox.com/s/2ct0i6kc61vp0bh/wall.jpg?raw=1");
-    margin-top: 5%;
+    margin-top: 10%;
     margin-left:25%;
     margin-right:25%;
     background-size: cover;
@@ -10,27 +10,13 @@ body.start {
     font-size: 1rem;
 }
 
-.header_1, .header_2, .container{
-    width: 800px;
-    border-radius: 15px;
-    background-color: rgba(192,192,192,0.7);
-    color: #000000;
-    border: 1px solid black;
-}
 
-.header_1 {
-    font-size: 20px;
-    margin-bottom: 15px;
-    animation: neon .08s ease-in-out infinite alternate;
-}
 
-.box {
-    width:30px;
-    height: 30px;
-    background: darkblue;
-    border-radius: 2px;
-    border: 1px solid black;
-}
+
+
+
+
+
 @keyframes neon {
     from {
         text-shadow:
@@ -52,18 +38,57 @@ body.start {
     }
 }
 
-.header_2 {
-    height: 95px;
-    font-size: 25pt;
+body.main {
+    background-image: url(#{resource[ 'images/mainbackground.jpg' ]});
+    margin: 0 auto;
 }
 
-.label {
-    width: 100px;
+
+
+.header_1 {
+    font-size: 30px;
+    width:480px;
+    color: #c6e2ff;
+    animation: neon .08s ease-in-out infinite alternate;
+}
+
+.divFlex {
+    display: -webkit-flex;
+    -webkit-flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
+    width: 1000px;
+}
+
+.header_2 {
+    width:480px;
+    font-size: 30px;
+    color: #c6e2ff;
+    animation: neon .08s ease-in-out infinite alternate;
 }
 
 .table_header_2 td {
     text-align: center;
     font-size: 18pt;
+}
+
+
+
+
+
+
+#clock {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Vibur", cursive;
+    font-size: 5.6rem;
+    text-align: center;
+    line-height: 1;
+    color: #c6e2ff;
+    animation: neon .08s ease-in-out infinite alternate;
 }
 
 .table_header_2 td {
@@ -93,9 +118,10 @@ table.input_table {
 
 
 
-#beanTable td, #beanTable th, #tableCalendar td {
+#beanTable td, #beanTable th, #tableCalendar td{
     border: 1px solid black;
 }
+
 
 
 .buttonToMain {background: #1D1B26;}

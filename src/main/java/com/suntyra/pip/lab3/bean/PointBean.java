@@ -3,7 +3,10 @@ package com.suntyra.pip.lab3.bean;
 import com.suntyra.pip.lab3.ErrorMessage;
 import com.suntyra.pip.lab3.model.Point;
 import com.suntyra.pip.lab3.model.User;
+import com.suntyra.pip.lab3.repository.PointRepository;
 import com.suntyra.pip.lab3.repository.UserRepository;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -19,39 +22,43 @@ import java.util.stream.Collectors;
 @ManagedBean(name = "pointBean", eager = true)
 @SessionScoped
 public class PointBean implements Serializable {
+    @Getter
     private double x = 0;
+    @Getter
     private double y = 0;
+    @Getter
     private double r = 4;
+    @Getter
     private List<Point> graphPoints = new ArrayList<>();
 
     @ManagedProperty("#{userBean}")
+    @Setter
+    @Getter
     private UserBean userBean = null;
 
     @ManagedProperty("#{messageBean}")
+    @Setter
+    @Getter
     private MessageBean messageBean = null;
 
-    private UserRepository userRepository = new UserRepository();
+    @ManagedProperty("#{usersRepository}")
+    @Setter
+    @Getter
+    private UserRepository userRepository;
 
-    public double getX() {
-        return x;
-    }
+    @ManagedProperty("#{pointsRepository}")
+    @Setter
+    @Getter
+    private PointRepository pointRepository;
 
     public void setX(double x) {
         DecimalFormat df = new DecimalFormat("#.####");
         this.x = Double.parseDouble(df.format(x));
     }
 
-    public double getY() {
-        return y;
-    }
-
     public void setY(double y) {
         DecimalFormat df = new DecimalFormat("#.####");
         this.y = Double.parseDouble(df.format(y));
-    }
-
-    public double getR() {
-        return r;
     }
 
     public void setR(double r) {
@@ -66,10 +73,6 @@ public class PointBean implements Serializable {
         graphPoints.addAll(newPoints);
     }
 
-    public List<Point> getGraphPoints() {
-        return graphPoints;
-    }
-
     public void replaceGraphPoints(List<Point> points) {
         // FIXME idk maybe call setR() here
         graphPoints.clear();
@@ -81,8 +84,13 @@ public class PointBean implements Serializable {
 
         User user = getUserFromContext();
         user.getPoints().clear();
+
+        user = userRepository.findByUsername(user.getUsername());
+        user.getPoints().clear();
         try {
             userRepository.saveOrUpdate(user);
+            List<Point> points = pointRepository.findByUser(user);
+            points.forEach(point -> pointRepository.delete(point));
         } catch (RuntimeException e) {
             messageBean.setErrorMessage(ErrorMessage.SERVER_UNAVAILABLE);
         }
@@ -93,13 +101,13 @@ public class PointBean implements Serializable {
     }
 
     private boolean isInArea(Double x, Double y, Double r) { // FIXME
-        if ((x >= 0) && (y >= 0) && (sqr(r / 2) >= sqr(x) + sqr(y))) {
+        if ((x <= 0) && (y >= 0) && (sqr(r) >= sqr(x) + sqr(y))) {
             return true;
         }
-        if (x >= 0 && y <= 0 && x <= r && Math.abs(y) <= r) {
+        if (x >= 0 && y >= 0 && x <= r && y <= r / 2) {
             return true;
         }
-        return ((x <= 0) && (y <= 0) && (y >= ((-2 * x) - r)));
+        return ((x >= 0) && (y <= 0) && (y >= (x - r)));
     }
 
     public void addPoint() {
@@ -124,25 +132,9 @@ public class PointBean implements Serializable {
         return value * value;
     }
 
-    private User getUserFromContext() {
+    public User getUserFromContext() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
         return userBean.getUsersMap().get(session.getId());
-    }
-
-    public UserBean getUserBean() {
-        return userBean;
-    }
-
-    public void setUserBean(UserBean userBean) {
-        this.userBean = userBean;
-    }
-
-    public MessageBean getMessageBean() {
-        return messageBean;
-    }
-
-    public void setMessageBean(MessageBean messageBean) {
-        this.messageBean = messageBean;
     }
 }

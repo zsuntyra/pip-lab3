@@ -16,6 +16,6 @@ public class YValidator implements Validator {
             throw new ValidatorException(new FacesMessage("Y must be double"));
         }
         Double value = (Double) o;
-        if (value > 5 || value < -3) throw new ValidatorException(new FacesMessage("Y is out if bound"));
+        if (value > 5 || value < -5) throw new ValidatorException(new FacesMessage("Y is out if bound"));
     }
 }

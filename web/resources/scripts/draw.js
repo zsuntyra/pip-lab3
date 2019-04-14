@@ -28,7 +28,7 @@ function getPoint(event) {
 
 function validateY() {
     var yField = document.getElementById("form.Y");
-    if (parseFloat(yField.value) > 5 || parseFloat(yField.value) < -3) {
+    if (parseFloat(yField.value) > 5 || parseFloat(yField.value) < -5) {
         yField.value = 0.0;
     }
 }

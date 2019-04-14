@@ -3,6 +3,7 @@ package com.suntyra.pip.lab3.bean;
 import com.suntyra.pip.lab3.ErrorMessage;
 import com.suntyra.pip.lab3.model.User;
 import com.suntyra.pip.lab3.repository.UserRepository;
+import lombok.Data;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -13,10 +14,13 @@ import java.io.Serializable;
 
 @ManagedBean(name = "authBean", eager = true)
 @SessionScoped
+@Data
 public class AuthBean implements Serializable {
     private String username;
     private String password;
-    private UserRepository userRepository = new UserRepository();
+
+    @ManagedProperty("#{usersRepository}")
+    private UserRepository usersRepository;
 
     @ManagedProperty("#{userBean}")
     private UserBean userBean;
@@ -26,30 +30,6 @@ public class AuthBean implements Serializable {
 
     @ManagedProperty("#{pointBean}")
     private PointBean pointBean;
-
-    public MessageBean getMessageBean() {
-        return messageBean;
-    }
-
-    public void setMessageBean(MessageBean messageBean) {
-        this.messageBean = messageBean;
-    }
-
-    public PointBean getPointBean() {
-        return pointBean;
-    }
-
-    public void setPointBean(PointBean pointBean) {
-        this.pointBean = pointBean;
-    }
-
-    public UserBean getUserBean() {
-        return userBean;
-    }
-
-    public void setUserBean(UserBean userBean) {
-        this.userBean = userBean;
-    }
 
     private void authorizeUser(User user) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -68,14 +48,14 @@ public class AuthBean implements Serializable {
 
     public String signIn() {
         try {
-            User receivedUser = userRepository.findByUsername(username);
+            User receivedUser = usersRepository.findByUsername(username);
             if (receivedUser == null) {
                 messageBean.setErrorMessage(ErrorMessage.WRONG_CREDENTIALS);
                 return null;
             }
             if (receivedUser.getPassword().equals(password)) {
                 authorizeUser(receivedUser);
-                return "graph?faces-redirect=true";
+                return "main?faces-redirect=true";
             } else {
                 messageBean.setErrorMessage(ErrorMessage.WRONG_CREDENTIALS);
             }
@@ -87,32 +67,17 @@ public class AuthBean implements Serializable {
 
     public boolean signUp() {
         try {
-            User receivedUser = userRepository.findByUsername(username);
+            User receivedUser = usersRepository.findByUsername(username);
             if (receivedUser != null) {
                 messageBean.setErrorMessage(ErrorMessage.LOGIN_EXISTS);
                 return false;
             }
             User newUser = new User(username, password);
-            userRepository.save(newUser);
+            usersRepository.save(newUser);
         } catch (RuntimeException e) {
             messageBean.setErrorMessage(ErrorMessage.SERVER_UNAVAILABLE);
         }
         return false;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

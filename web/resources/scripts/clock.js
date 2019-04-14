@@ -3,7 +3,7 @@ function setTime() {
     let sec = date.getSeconds();
     let minutes = date.getMinutes();
     let hours = date.getHours();
-    document.getElementById("clock").innerHTML = "<label style='color: black;font-size: 25pt;'>Время:</label><br/> " + formatDate(hours) + ":" + formatDate(minutes) + ":" + formatDate(sec);
+    document.getElementById("clock").innerHTML = "<br/>" + formatDate(hours) + ":" + formatDate(minutes) + ":" + formatDate(sec);
     let time = setTimeout(setTime, 7000);
 }
 
