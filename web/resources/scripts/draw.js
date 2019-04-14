@@ -10,7 +10,7 @@ function getPoint(event) {
     var y = event.clientY;
     console.log(y);
     var cursorpt = pt.matrixTransform(document.getElementById('picture').getScreenCTM().inverse());
-    var r = parseFloat(document.getElementById('form:R_text').innerHTML);
+    var r = parseFloat(document.getElementById('form:R').innerHTML);
     document.getElementById("form:X").value = (x + cursorpt.x - 125) * r / 100;
     document.getElementById("form:Y").value = -(y + cursorpt.y - 125) * r / 100;
     document.getElementById("form:areaClickBtn").click();

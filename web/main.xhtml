@@ -62,8 +62,6 @@
                                                     </ui:repeat>
                                                 </svg>
 
-                                                <p:inputText type="hidden" id="hiddenX" value="#{pointBean.x}"/>
-                                                <p:inputText type="hidden" id="hiddenY" value="#{pointBean.y}"/>
                                                 <h:commandButton style="display:none" update="graphPanel Y"
                                                                  id="areaClickBtn"
                                                                  action="#{pointBean.addPoint()}"/>
@@ -74,9 +72,11 @@
                                         <td>
                                             <h:outputLabel styleClass="label" for="X" value="&#8226; Координата X: "/>
                                             <h:outputText styleClass="label" id="Xb" value="#{pointBean.x}"/>
-                                                <p:inputText styleClass="label" id="X" value="#{pointBean.x}" onkeydown="return false;"/>
-                                                <p:slider styleClass="slide" for="X" minValue="-4" maxValue="4" step="1"
-                                                          target="#{pointBean.x}" onSlideEnd="document.getElementById('mainForm:hiddenBtn').click()"/>
+                                            <p:inputText styleClass="label" id="X" value="#{pointBean.x}"
+                                                         onkeydown="return false;"/>
+                                            <p:slider styleClass="slide" for="X" minValue="-4" maxValue="4" step="1"
+                                                      target="#{pointBean.x}"
+                                                      onSlideEnd="document.getElementById('mainForm:hiddenBtn').click()"/>
                                         </td>
                                     </tr>
                                     <tr>
@@ -90,36 +90,41 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                           <h:outputLabel class="label" value="&#8226; Радиус R: "/>
-                                            <h:outputText class="input_R" id="R_text"
+                                            <h:outputLabel class="label" value="&#8226; Радиус R: "/>
+                                            <h:outputText class="input_R" id="R"
                                                           value="#{pointBean.r}"/>
                                             <br/>
-                                            <h:commandLink styleClass="box" value="1">
+                                            <p:commandLink onclick="" styleClass="box" value="1">
                                                 <f:setPropertyActionListener target="#{pointBean.r}" value="1"/>
-                                                <f:ajax render="graphPanel R_text"/>
-                                            </h:commandLink>&nbsp;
-                                            <h:commandLink styleClass="box" value="2">
+                                                <f:ajax render="graphPanel R"/>
+                                                <f:ajax render="graphPanel R"/>
+                                            </p:commandLink>&nbsp;
+                                            <p:commandLink styleClass="box" value="2">
                                                 <f:setPropertyActionListener target="#{pointBean.r}" value="2"/>
-                                                <f:ajax render="graphPanel R_text"/>
-                                            </h:commandLink>&nbsp;
-                                            <h:commandLink styleClass="box" value="3">
+                                                <f:ajax render="graphPanel R"/>
+                                                <f:ajax render="graphPanel R"/>
+                                            </p:commandLink>&nbsp;
+                                            <p:commandLink styleClass="box" value="3">
                                                 <f:setPropertyActionListener target="#{pointBean.r}" value="3"/>
-                                                <f:ajax render="graphPanel R_text"/>
-                                            </h:commandLink>&nbsp;
-                                            <h:commandLink styleClass="box" value="4">
+                                                <f:ajax render="graphPanel R"/>
+                                                <f:ajax render="graphPanel R"/>
+                                            </p:commandLink>&nbsp;
+                                            <p:commandLink styleClass="box" value="4">
                                                 <f:setPropertyActionListener target="#{pointBean.r}" value="4"/>
-                                                <f:ajax render="graphPanel R_text"/>
-                                            </h:commandLink>&nbsp;
-                                            <h:commandLink styleClass="box" value="5">
+                                                <f:ajax render="graphPanel R"/>
+                                                <f:ajax render="graphPanel R"/>
+                                            </p:commandLink>&nbsp;
+                                            <p:commandLink styleClass="box" value="5">
                                                 <f:setPropertyActionListener target="#{pointBean.r}" value="5"/>
-                                                <f:ajax render="graphPanel R_text"/>
-                                            </h:commandLink>
+                                                <f:ajax render="graphPanel R"/>
+                                                <f:ajax render="graphPanel R"/>
+                                            </p:commandLink>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <h:commandLink styleClass="buttonToMain" id="submit" value="Проверить"
-                                                             action="#{pointBean.addPoint()}"/>
+                                                           action="#{pointBean.addPoint()}"/>
                                         </td>
                                         <td style="width: 25px">
                                             <h:button styleClass="buttonToMain" value="Назад" outcome="index"/>
